@@ -115,8 +115,9 @@ void pretrazivanje(char kriterij) {
 	char trazena_lokacija[50];
 	float min_cijena;
 	float max_cijena;
+	int broj_artikala;
+	int f = 0;
 
-	int broj_artikala, f = 0;
 	fp = fopen("artikli.bin", "rb");
 	if (fp == NULL) {
 		printf("\nGreska.\n");
@@ -135,7 +136,6 @@ void pretrazivanje(char kriterij) {
 				for (int i = 0; i < broj_artikala; i++) {
 					fread(artikli, sizeof(ARTIKL), 1, fp);
 					if (strcmp(artikli->naslov_artikla, trazeno_ime) == 0) {
-						printf("\nArtikl je dostupan.");
 						ispisArtikla(artikli);
 						f = 1;
 						break;
@@ -169,7 +169,6 @@ void pretrazivanje(char kriterij) {
 				for (int i = 0; i < broj_artikala; i++) {
 					fread(artikli, sizeof(ARTIKL), 1, fp);
 					if (strcmp(artikli->kategorija, trazena_kategorija) == 0) {
-						printf("\nArtikl je dostupan.");
 						ispisArtikla(artikli);
 						f = 1;
 					}
@@ -181,7 +180,6 @@ void pretrazivanje(char kriterij) {
 				for (int i = 0; i < broj_artikala; i++) {
 					fread(artikli, sizeof(ARTIKL), 1, fp);
 					if (strcmp(artikli->lokacija, trazena_lokacija) == 0) {
-						printf("\nArtikl je dostupan.");
 						ispisArtikla(artikli);
 						f = 1;
 						break;
@@ -196,7 +194,6 @@ void pretrazivanje(char kriterij) {
 				for (int i = 0; i < broj_artikala; i++) {
 					fread(artikli, sizeof(ARTIKL), 1, fp);
 					if (artikli->cijena >= min_cijena && artikli->cijena <= max_cijena) {
-						printf("\nArtikl je dostupan.");
 						ispisArtikla(artikli);
 						f = 1;
 					}
@@ -358,7 +355,6 @@ void uredivanje_Artikla() {
 
 					default:
 						printf("Krivi unos.");
-						
 					}
 					break;
 				}
@@ -371,7 +367,6 @@ void uredivanje_Artikla() {
 		fclose(fp);
 	}
 	free(oglas);
-	oglas = NULL;
 }
 
 void sortiranje_izbornik() {
@@ -387,7 +382,7 @@ void sortiranje_izbornik() {
 		printf("\nGreska.\n");
 	}
 	else {
-		fread(&broj_artikala, sizeof(int), 1, fp); //citanje broja knjiga
+		fread(&broj_artikala, sizeof(int), 1, fp); //citanje broja artikala
 		artikli = (ARTIKL*)malloc(broj_artikala * sizeof(ARTIKL));
 		if (artikli == NULL) {
 			printf("\nGreska!");
