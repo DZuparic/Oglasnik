@@ -75,7 +75,7 @@ int main(void) {
 			break;
 		
 		default:
-			printf("\nPritisnite bilo koju tipku za povrtaka....\n");
+			printf("\nKrivi unos, pritisnite bilo koju tipku za povratak....\n");
 			getch();
 		}
 
